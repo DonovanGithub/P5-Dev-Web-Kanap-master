@@ -5,6 +5,7 @@
 let panier = JSON.parse(window.localStorage.getItem("panier"));
 let hidden = document.querySelector(".hidden");
 let cart = document.querySelector("#cart__items");
+const cartItem = document.querySelector("#cart__items");
 
 // Mise en place de la suppression du formulaire si le panier est vide
 if (panier === null || panier.length === 0) {
@@ -17,8 +18,6 @@ if (panier === null || panier.length === 0) {
 // Déclaration de variable pour le total quantity et total price
 let totalP = 0;
 let totalQ = 0;
-
-const cartItem = document.querySelector("#cart__items");
 
 // Boucle for pour récupérer l'id et afficher les produits dans le panier
 for (let article of panier) {
@@ -82,17 +81,14 @@ for (let article of panier) {
               (element) =>
                 element.id === idTarget && element.couleur === colorTarget
             );
-
             if (found) {
-              article.quantity = e.target.value;
-              found.quantity = article.quantity;
+              found.quantity = e.target.value;
               window.localStorage.setItem("panier", JSON.stringify(panier));
               window.location.reload();
             }
           })
         );
       }
-
       /**
        * Cette fonction prend en charge les produits supprimés
        * @param {function} deleteProduct
